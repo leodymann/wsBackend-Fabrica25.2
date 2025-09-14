@@ -81,51 +81,26 @@ http://127.0.0.1:8000/
 ```
 
 ### 8️⃣ Testar a API
-- 🔑 Autenticação JWT
-```bash
-POST /api/token/
-```
-- Body:
-```bash
-{
-  "username": "seu_usuario",
-  "password": "sua_senha"
-}
-```
-- 🔄 Renovar token:
-```bash
-POST /api/token/refresh/
-```
-- Body:
-```bash
-{
-  "refresh": "<seu_refresh_token>"
-}
+## 📌 Rotas da API
 
-```
+Aqui estão os principais endpoints disponíveis no projeto.
 
-- 📚 Gerenciar Coleção de Livros
+| Método | Endpoint                                          | Autenticação      | Descrição |
+|--------|---------------------------------------------------|-------------------|-----------|
+| **GET**    | `/api/books/search/?title=<titulo>`                | ✅ Obrigatória    | Busca livros na Open Library a partir de um título. |
+| **GET**    | `/api/books/collections/`                          | ✅ Obrigatória    | Lista todos os livros da coleção do usuário autenticado. |
+| **POST**   | `/api/books/collections/add/`                      | ✅ Obrigatória    | Adiciona um livro à coleção do usuário. |
+| **DELETE** | `/api/books/collections/<id>/remove/`              | ✅ Obrigatória    | Remove um livro específico da coleção do usuário. |
+| **POST**   | `/api/users/register/`                             | ❌ Não requerida | Registra um novo usuário. |
+| **POST**   | `/api/token/`                                      | ❌ Não requerida | Gera token de autenticação (JWT ou SimpleJWT). |
 
-```bash
-POST /api/books/collections/add/
-```
-- Body:
+---
 
-```bash
-{
-  "title": "O Senhor dos Anéis"
-}
-```
-
-- ❌ Remover livro da coleção:
-```bash
-DELETE /api/books/collections/<id>/remove/
-```
-
-- 📃 Listar livros da coleção:
-```bash
-GET /api/books/collections/
-```
+### 🔑 Notas sobre autenticação
+- Os endpoints marcados como **Obrigatória** requerem envio de token de autenticação.  
+- Exemplo de header:  
+  ```http
+  Authorization: Bearer <SEU_TOKEN>
 
 ```bash
 ✅ Pronto! Agora você já pode usar a API Book Manager com autenticação JWT e gerenciamento de coleção de livros.
