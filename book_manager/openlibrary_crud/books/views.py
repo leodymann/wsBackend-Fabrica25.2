@@ -6,6 +6,7 @@ from .serializers import CollectionSerializer
 from .utils import fetch_books_by_title
 
 class BookSearchAPIView(APIView):
+    # consuming the API
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
@@ -16,6 +17,7 @@ class BookSearchAPIView(APIView):
         return Response(results)
 
 class CollectionListAPIView(generics.ListAPIView):
+    # list collection user
     serializer_class = CollectionSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -23,6 +25,7 @@ class CollectionListAPIView(generics.ListAPIView):
         return Collection.objects.filter(user=self.request.user)
 
 class CollectionAddAPIView(APIView):
+    # add book in collection user
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
@@ -33,6 +36,7 @@ class CollectionAddAPIView(APIView):
         return Response(serializer.errors, status=400)
 
 class CollectionRemoveAPIView(APIView):
+    # remove book in collection user
     permission_classes = [permissions.IsAuthenticated]
 
     def delete(self, request, pk):

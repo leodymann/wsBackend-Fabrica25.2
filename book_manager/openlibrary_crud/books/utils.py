@@ -1,6 +1,8 @@
 import requests
 
 def fetch_books_by_title(title):
+    # search title book in api
+    # return list < 10 count
     url = f"https://openlibrary.org/search.json?title={title}"
     response = requests.get(url)
     if response.status_code == 200:

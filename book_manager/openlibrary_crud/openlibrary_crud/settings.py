@@ -74,16 +74,15 @@ WSGI_APPLICATION = 'openlibrary_crud.wsgi.application'
 # Database
 # Usando variáveis de ambiente para Docker
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "openlibrary_db",
-        "USER": "leo",
-        "PASSWORD": "12345678",
-        "HOST": "localhost",  # <- aqui está o problema
-        "PORT": 5432,
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DATABASE_NAME', 'openlibrary_db'),
+        'USER': os.getenv('DATABASE_USER', 'leo'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD', '12345678'),
+        'HOST': os.getenv('DATABASE_HOST', 'db'),
+        'PORT': os.getenv('DATABASE_PORT', '5432'),
     }
 }
-
 
 
 # Password validation

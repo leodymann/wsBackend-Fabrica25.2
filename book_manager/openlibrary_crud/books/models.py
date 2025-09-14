@@ -1,8 +1,10 @@
 from django.db import models
 from django.conf import settings
 
+
 class Collection(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='collections')
+    # Model - colleciton the user
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='collections') # -> Relacionamento entre user <-> collections
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255, blank=True)
     published_date = models.CharField(max_length=50, blank=True)
